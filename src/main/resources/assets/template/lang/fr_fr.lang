@@ -1,0 +1,5 @@
+// Blocks
+tile.myBlock.name=Mon bloc
+
+// Items
+item.myItem.name=Mon item

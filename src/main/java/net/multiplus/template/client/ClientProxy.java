@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-package net.multiplus.examplemod.client;
+package net.multiplus.template.client;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -27,8 +27,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.multiplus.examplemod.common.CommonProxy;
-import net.multiplus.examplemod.common.items.Items;
+import net.multiplus.template.common.CommonProxy;
+import net.multiplus.template.common.items.Items;
 
 /**
  * ClientProxy.
@@ -37,21 +37,8 @@ import net.multiplus.examplemod.common.items.Items;
  * @version 1.0.0
  * @since 1.0.0
  */
-
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
-
-    /**
-     * Pre initialize client proxy.
-     *
-     * @param event Triggered event
-     * @see FMLPreInitializationEvent
-     * @since 1.0.0
-     */
-    @Override
-    public void preInit(FMLPreInitializationEvent event) {
-        super.preInit(e);
-    }
 
     /**
      * Register model for each item (inventory renderer).
@@ -61,9 +48,21 @@ public class ClientProxy extends CommonProxy {
      * @since 1.0.0
      */
     @SubscribeEvent
-    public static void registerModels(ModelRegistryEvent event) {
+    public static void registerModels(final ModelRegistryEvent event) {
         Items.getItems().forEach(i -> {
             ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(i.getRegistryName(), "inventory"));
         });
+    }
+
+    /**
+     * Pre initialize client proxy.
+     *
+     * @param event Triggered event
+     * @see FMLPreInitializationEvent
+     * @since 1.0.0
+     */
+    @Override
+    public void preInit(final FMLPreInitializationEvent event) {
+        super.preInit(event);
     }
 }

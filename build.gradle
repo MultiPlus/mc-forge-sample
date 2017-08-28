@@ -12,8 +12,8 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 version = "1.0.0"
-group = "net.multiplus.examplemod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "examplemod"
+group = "net.multiplus.template" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "template"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {

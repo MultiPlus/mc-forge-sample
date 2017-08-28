@@ -18,29 +18,16 @@
  * SOFTWARE.
  */
 
-package net.multiplus.examplemod.common.blocks;
+package net.multiplus.template.common.items;
 
-
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 
 /**
- * ExampleBlock.
- * A default sample block.
+ * MyItem.
  *
  * @author MultiPlus
  * @version 1.0.0
  * @since 1.0.0
  */
-public class ExampleBlock extends Block {
-
-    /**
-     * Default constructor with block material.
-     *
-     * @param material material for block
-     * @since 1.0.0
-     */
-    public ExampleBlock(final Material material) {
-        super(material);
-    }
+public class MyItem extends Item {
 }

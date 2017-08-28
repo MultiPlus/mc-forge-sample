@@ -18,16 +18,29 @@
  * SOFTWARE.
  */
 
-package net.multiplus.examplemod.server;
+package net.multiplus.template.common.blocks;
 
-import net.multiplus.examplemod.common.CommonProxy;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 /**
- * ServerProxy.
+ * MyBlock.
+ * A default sample block.
  *
  * @author MultiPlus
  * @version 1.0.0
  * @since 1.0.0
  */
-public class ServerProxy extends CommonProxy {
+public class MyBlock extends Block {
+
+    /**
+     * Default constructor with block material.
+     *
+     * @param material material for block
+     * @since 1.0.0
+     */
+    public MyBlock(final Material material) {
+        super(material);
+    }
 }

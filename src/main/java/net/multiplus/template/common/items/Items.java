@@ -18,35 +18,46 @@
  * SOFTWARE.
  */
 
-package net.multiplus.examplemod.common.items;
+package net.multiplus.template.common.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.multiplus.examplemod.ExampleMod;
+import net.multiplus.template.Template;
 
 import java.util.ArrayList;
 
 /**
  * Items.
+ * Container for register all required mod items in game.
  *
  * @author MultiPlus
  * @version 1.0.0
  * @since 1.0.0
  */
 @Mod.EventBusSubscriber
-@GameRegistry.ObjectHolder(ExampleMod.MOD_ID)
+@GameRegistry.ObjectHolder(Template.MOD_ID)
 public final class Items {
 
     /**
-     * All blocks for mod.
+     * All items for mod.
      *
      * @see Item
      * @since 1.0.0
      */
     private static ArrayList<Item> items = new ArrayList<>();
+
+    /**
+     * Required item for mod.
+     *
+     * @see Item
+     * @since 1.0.0
+     */
+    public static final Item myItem = register(new MyItem().setCreativeTab(CreativeTabs.TOOLS).setUnlocalizedName("myItem"), "my_item");
+    //All your items here ...
 
     /**
      * Register item for mod.
@@ -55,8 +66,7 @@ public final class Items {
      * @since 1.0.0
      */
     public static Item register(final Item item, final String name) {
-        item.setRegistryName(ExampleMod.MOD_ID, name)
-                .setUnlocalizedName(name);
+        item.setRegistryName(Template.MOD_ID, name);
         items.add(item);
         return item;
     }
@@ -75,13 +85,13 @@ public final class Items {
      * Create dedicated item for block.
      *
      * @param block block needed item
-     * @param name name to registered
-     *
+     * @param name  name to registered
      * @see Item
      * @since 1.0.0
      */
     public static Item createItemBlock(final Block block, final String name) {
-        final Item item = new ItemBlock(block).setRegistryName(name).setUnlocalizedName(name);
+        final Item item = new ItemBlock(block);
+        register(item, name);
         items.add(item);
         return item;
     }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "normal": {
-      "model": "examplemod:example"
+      "model": "template:my_block"
     }
   }
 }

@@ -18,7 +18,7 @@
  * SOFTWARE.
  */
 
-package net.multiplus.examplemod.common;
+package net.multiplus.template.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -29,70 +29,75 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.multiplus.examplemod.common.blocks.Blocks;
-import net.multiplus.examplemod.common.items.Items;
+import net.multiplus.template.common.blocks.Blocks;
+import net.multiplus.template.common.items.Items;
 
 /**
  * CommonProxy.
+ * The main abstract proxy moralize all feature.
  *
  * @author MultiPlus
  * @version 1.0.0
  * @since 1.0.0
  */
 @Mod.EventBusSubscriber
-public class CommonProxy {
+public abstract class CommonProxy {
 
     /**
-     * Pre init proxy
+     * Register all blocks in game.
      *
-     * @param event event triggered pre initialization
-     * @see FMLPreInitializationEvent
-     */
-    public void preInit(FMLPreInitializationEvent event) {
-    }
-
-    /**
-     * Init proxy
-     *
-     * @param event event triggered initialization
-     * @see FMLInitializationEvent
-     */
-    public void init(FMLInitializationEvent event) {
-    }
-
-    /**
-     * Post init proxy
-     *
-     * @param event event triggered post initialization
-     * @see FMLPostInitializationEvent
-     */
-    public void postInit(FMLPostInitializationEvent event) {
-    }
-
-    /**
-     * Register blocks in game.
-     *
-     * @param evt event triggered register block
+     * @param event event triggered register block
      * @see RegistryEvent.Register<Block>
      * @since 1.0.0
      */
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> evt) {
-        IForgeRegistry<Block> r = evt.getRegistry();
+    public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+        IForgeRegistry<Block> r = event.getRegistry();
         Blocks.getBlocks().forEach(r::register);
     }
 
     /**
-     * Register items in game.
+     * Register all items in game.
      *
-     * @param evt event triggered register block
+     * @param event event triggered register block
      * @see RegistryEvent.Register<Block>
      * @since 1.0.0
      */
     @SuppressWarnings("ConstantConditions")
     @SubscribeEvent
-    public static void registerItemBlocks(RegistryEvent.Register<Item> evt) {
-        IForgeRegistry<Item> r = evt.getRegistry();
-        Blocks.getBlocks().forEach(b -> r.register(Items.createItemBlock(b, b.getUnlocalizedName().replace("tile.", ""))));
+    public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
+        IForgeRegistry<Item> r = event.getRegistry();
+        Blocks.getBlocks().forEach(b -> Items.createItemBlock(b, b.getRegistryName().getResourcePath()));
+        Items.getItems().forEach(r::register);
+    }
+
+    /**
+     * Pre initialize proxy.
+     *
+     * @param event event triggered pre initialization
+     * @see FMLPreInitializationEvent
+     * @since 1.0.0
+     */
+    public void preInit(final FMLPreInitializationEvent event) {
+    }
+
+    /**
+     * Initialize proxy.
+     *
+     * @param event event triggered initialization
+     * @see FMLInitializationEvent
+     * @since 1.0.0
+     */
+    public void init(final FMLInitializationEvent event) {
+    }
+
+    /**
+     * Post initialize proxy.
+     *
+     * @param event event triggered post initialization
+     * @see FMLPostInitializationEvent
+     * @since 1.0.0
+     */
+    public void postInit(final FMLPostInitializationEvent event) {
     }
 }

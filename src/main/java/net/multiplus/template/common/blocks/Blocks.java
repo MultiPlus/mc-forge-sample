@@ -18,26 +18,27 @@
  * SOFTWARE.
  */
 
-package net.multiplus.examplemod.common.blocks;
+package net.multiplus.template.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.multiplus.examplemod.ExampleMod;
+import net.multiplus.template.Template;
 
 import java.util.ArrayList;
 
 /**
  * Blocks.
+ * Container for register all required mod blocks in game.
  *
  * @author MultiPlus
  * @version 1.0.0
  * @since 1.0.0
  */
 @Mod.EventBusSubscriber
-@GameRegistry.ObjectHolder(ExampleMod.MOD_ID)
+@GameRegistry.ObjectHolder(Template.MOD_ID)
 public final class Blocks {
 
     /**
@@ -54,7 +55,8 @@ public final class Blocks {
      * @see Block
      * @since 1.0.0
      */
-    public static final Block example = register(new ExampleBlock(Material.ROCK).setHardness(1.5F).setResistance(10.0F).setCreativeTab(CreativeTabs.BUILDING_BLOCKS), "example");
+    public static final Block myBlock = register(new MyBlock(Material.ROCK).setHardness(1.5F).setResistance(10.0F).setCreativeTab(CreativeTabs.BUILDING_BLOCKS).setUnlocalizedName("myBlock"), "my_block");
+    //All your blocks here ...
 
     /**
      * Register block for mod.
@@ -63,8 +65,7 @@ public final class Blocks {
      * @since 1.0.0
      */
     public static Block register(final Block block, final String name) {
-        block.setRegistryName(ExampleMod.MOD_ID, name)
-                .setUnlocalizedName(name);
+        block.setRegistryName(Template.MOD_ID, name);
         blocks.add(block);
         return block;
     }

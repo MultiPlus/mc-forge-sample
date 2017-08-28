@@ -18,68 +18,66 @@
  * SOFTWARE.
  */
 
-package net.multiplus.examplemod;
+package net.multiplus.template;
 
-import net.minecraftforge.fml.common.event.*;
-import net.multiplus.examplemod.common.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.*;
+import net.multiplus.template.common.CommonProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * ExampleMod.
+ * Template.
+ * The main entry of forge mod.
  *
  * @author MultiPlus
  * @version 1.0.0
  * @since 1.0.0
  */
-@Mod(modid = ExampleMod.MOD_ID, name = ExampleMod.MOD_NAME, version = ExampleMod.MOD_VERSION)
-public class ExampleMod {
+@Mod(modid = Template.MOD_ID, name = Template.MOD_NAME, version = Template.MOD_VERSION)
+public class Template {
 
     /**
      * Properties of mod.
      *
      * @since 1.0.0
      */
-    public static final String MOD_ID = "examplemod";
-    public static final String MOD_NAME = "example";
+    public static final String MOD_ID = "template";
+    public static final String MOD_NAME = "template";
     public static final String MOD_VERSION = "1.0.0";
-
-    /**
-     * Injected mod instance.
-     *
-     * @since 1.0.0
-     */
-    @Mod.Instance(ExampleMod.MOD_ID)
-    public static ExampleMod instance;
-
-    /**
-     * Mod Proxy for manage ressources (Distinct server and client).
-     *
-     * @see CommonProxy
-     * @since 1.0.0
-     */
-    @SidedProxy(serverSide = "net.multiplus.examplemod.common.CommonProxy", clientSide = "net.multiplus.examplemod.client.ClientProxy")
-    public static CommonProxy proxy;
-
     /**
      * Mod Logger.
      *
      * @see Logger
      * @since 1.0.0
      */
-    public static final Logger LOGGER = LogManager.getLogger(ExampleMod.MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(Template.MOD_ID);
+    /**
+     * Injected mod instance.
+     *
+     * @since 1.0.0
+     */
+    @Mod.Instance(Template.MOD_ID)
+    public static Template instance;
+    /**
+     * Mod Proxy for manage resources (Distinct server and client).
+     *
+     * @see CommonProxy
+     * @since 1.0.0
+     */
+    @SidedProxy(serverSide = "net.multiplus.template.common.CommonProxy", clientSide = "net.multiplus.template.client.ClientProxy")
+    public static CommonProxy proxy;
 
     /**
-     * PreInitialization on startup.
+     * Pre initialization on startup.
      *
      * @param event triggered event
      * @see FMLPreInitializationEvent
      * @since 1.0.0
      */
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(final FMLPreInitializationEvent event) {
         LOGGER.info("PreInit mod " + MOD_NAME + "#" + MOD_ID + " " + MOD_VERSION);
         proxy.preInit(event);
     }
@@ -92,47 +90,47 @@ public class ExampleMod {
      * @since 1.0.0
      */
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(final FMLInitializationEvent event) {
         LOGGER.info("Init mod " + MOD_NAME + "#" + MOD_ID + " " + MOD_VERSION);
         proxy.init(event);
     }
 
     /**
-     * PostInitialization on startup.
+     * Post initialization on startup.
      *
      * @param event triggered event
      * @see FMLPostInitializationEvent
      * @since 1.0.0
      */
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(final FMLPostInitializationEvent event) {
         LOGGER.info("PostInit mod " + MOD_NAME + "#" + MOD_ID + " " + MOD_VERSION);
         proxy.postInit(event);
     }
 
     /**
-     * Stard server.
+     * When started server.
      *
      * @param event triggered event
      * @see FMLServerStartedEvent
      * @since 1.0.0
      */
     @Mod.EventHandler
-    public void serverStarted(FMLServerStartedEvent event) {
+    public void serverStarted(final FMLServerStartedEvent event) {
         LOGGER.info("ServerStarted mod " + MOD_NAME + "#" + MOD_ID + " " + MOD_VERSION);
         //Get minecraft server instance
         //MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
     }
 
     /**
-     * Stop server.
+     * When stopped server.
      *
      * @param event triggered event
      * @see FMLServerStoppedEvent
      * @since 1.0.0
      */
     @Mod.EventHandler
-    public void serverStopped(FMLServerStoppedEvent event) {
+    public void serverStopped(final FMLServerStoppedEvent event) {
         LOGGER.info("ServerStopped mod " + MOD_NAME + "#" + MOD_ID + " " + MOD_VERSION);
     }
 
